@@ -6,15 +6,29 @@
   "description": "Adds a todoist bar to the Google Calendar page.",
   "options_page": "options.html",
   "web_accessible_resources": [
-    "Javascript/*.js",
-	"combind.js"
+    "jQuery/*",	  
+    "loader.js",
+    "cssLoader.js",
+    "main.css"
   ], 
+  "permissions": [
+    "https://calendar.google.com/*"
+  ],
  "content_scripts": [
     {
       "matches": ["https://calendar.google.com/*"],
-	  "run_at": "document_idle",
-	  "css": ["loadingPage.css"],
-      "js": ["jsLoader.js"]
+      "run_at": "document_idle",
+      "js": ["jQuery/jquery.js", "jQuery/jquery-ui.js", "loader.js"],
+      "css": ["jQuery/jquery-ui.structure.css", "jQuery/jquery-ui.theme.css"]
+    },
+    {
+      "matches": ["https://calendar.google.com/*"],
+      "run_at": "document_start",
+      "js": ["cssLoader.js"]
     }
-  ]
+  ],
+  "background": {
+	"scripts": ["listener.js"],
+	"persistent": false
+  }
 }
