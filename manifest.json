@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "Google Calendar Integration for Todoist",
+  "version": "1.0.0.0",
+  "author": "Spencer Hachmeister",	
+  "description": "Adds a todoist bar to the Google Calendar page.",
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    "Javascript/*.js",
+	"combind.js"
+  ], 
+ "content_scripts": [
+    {
+      "matches": ["https://calendar.google.com/*"],
+	  "run_at": "document_idle",
+	  "css": ["loadingPage.css"],
+      "js": ["jsLoader.js"]
+    }
+  ]
+}
