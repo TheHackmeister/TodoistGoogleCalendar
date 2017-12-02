@@ -1,6 +1,8 @@
 //window.onload = setup;
 
 function setup(options = {leftWidth: "60", calendarLeft: "true"} ) {
+	debugger;
+	//await sleep(2000);
 	var calendarLeft = options['calendarLeft'];
 	var leftWidth = options['leftWidth'];
 
@@ -20,10 +22,27 @@ function setup(options = {leftWidth: "60", calendarLeft: "true"} ) {
 
 	if(calendarLeft == "true") {	
 		rightDiv.appendChild(iFrame);
-		leftDiv.appendChild(cal);
+
+		// Why the first loop through doesn't catch everything I don't know. Doing it twice takes care of things.
+		for(let element of body.childNodes)
+		{
+			leftDiv.appendChild(element);
+		}
+		for(let element of body.childNodes)
+		{
+			leftDiv.appendChild(element);
+		}
+
 	} else {
 		rightDiv.appendChild(cal);
-		leftDiv.appendChild(iFrame);
+		for(let element of body.childNodes)
+		{
+			leftDiv.appendChild(element);
+		}
+		for(let element of body.childNodes)
+		{
+			leftDiv.appendChild(element);
+		}
 	}
 	container.appendChild(leftDiv);
 	container.appendChild(rightDiv);
